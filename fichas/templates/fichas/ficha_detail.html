@@ -1,0 +1,14 @@
+<body>
+{% block content %}
+    <h2>{{ object.paciente }}</h2>
+        <ul>
+            <li>Lesión: {{ object.lesion }}</li>
+            <li>Cuando: {{ object.cuando }}</li>
+            <li>Como: {{ object.como }}</li>
+            <li>Tratamiento: {{ object.tratamiento_ee|yesno:"EE," }} {{ object.tratamiento_IR|yesno:"IR," }} {{ object.tratamiento_tm|yesno:"TM," }} {{ object.tratamiento_us|yesno:"US," }} {{ object.tratamiento_l|yesno:"L," }} {{ object.tratamiento_MG|yesno:"MG," }} {{ object.tratamiento_cines|yesno:"CINES," }} {{ object.tratamiento_synm|yesno:"SYNM," }} {{ object.tratamiento_tc|yesno:"TC," }} {{ object.tratamiento_PS|yesno:"PS," }} {{ object.tratamiento_epte|yesno:"EPTE,  " }} </li>
+            <li>Observaciones: {{ object.observaciones }}</li>
+            <li>Terapeuta: {{ object.get_terapeuta_display }}</li>
+            <li>Dolor: {{ object.dolor }}</li>
+        </ul>
+{% endblock %}
+</body>

@@ -1,0 +1,10 @@
+<body>
+{% block content %}
+    <h2>Fichas</h2>
+        {% for ficha in object_list %}
+        <ul>
+            <li><a href="{% url 'fichas:ficha-detail' pk=ficha.id %}">{{ ficha.paciente }}</a></li>
+        </ul>
+        {% endfor %}
+{% endblock %}
+</body>

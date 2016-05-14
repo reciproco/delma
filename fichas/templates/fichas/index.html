@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>DELMA Consulta de fichas</title>           
+</head>
+<body>
+<p>Busqueda de pacientes:</p>    
+<form id="searchform" action="{% url 'fichas:ficha-list' %}" method="get" accept-charset="utf-8">
+      <button type="submit">
+        <i></i>
+      </button>
+      <input id="searchbox" name="nombre" type="text" placeholder="Search">
+    </form>
+</body>
+</html>
