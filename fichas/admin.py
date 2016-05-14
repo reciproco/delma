@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group, User
+from django.contrib.auth.admin import GroupAdmin, UserAdmin
 
 # Register your models here.
 from django.contrib.admin import AdminSite
@@ -38,5 +40,7 @@ admin_site = MyAdminSite(name='delma')
 # Register your models here.
 admin_site.register(Paciente, PacienteAdmin)
 admin_site.register(Ficha, FichaAdmin)
+admin_site.register(User, UserAdmin)
+admin_site.register(Group, GroupAdmin)
 #admin.site.register(Adjunto)
 

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'index' %}">{% trans 'Home' %}</a></div>{% endblock %}
+
+{% block content %}
+
+<p>{% trans "Gracias por utilizar la aplicación." %}</p>
+
+<p><a href="{% url 'seguridad:login' %}">{% trans 'Identificarse de nuevo' %}</a></p>
+
+{% endblock %}

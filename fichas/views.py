@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, TemplateView
 from django.db.models import Q
 from fichas.models import Ficha
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 class FichaList(ListView):
     model = Ficha
