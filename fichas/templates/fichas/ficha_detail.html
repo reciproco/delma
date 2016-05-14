@@ -1,4 +1,5 @@
-<body>
+{% extends "base.html" %}
+
 {% block content %}
     <h2>{{ object.paciente }}</h2>
         <ul>
@@ -11,4 +12,3 @@
             <li>Dolor: {{ object.dolor }}</li>
         </ul>
 {% endblock %}
-</body>

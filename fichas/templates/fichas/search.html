@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>Busqueda de pacientes:</p>    
+<form id="searchform" action="{% url 'fichas:ficha-list' %}" method="get" accept-charset="utf-8">
+      <button type="submit">
+        <i></i>
+      </button>
+      <input id="searchbox" name="nombre" type="text" placeholder="Search">
+    </form>
+</body>
+</html>
+
+{% endblock %}

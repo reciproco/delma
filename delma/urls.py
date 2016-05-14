@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from fichas.admin import admin_site
+from fichas.views import FichaIndexView
 
 urlpatterns = [
     url(r'^delma/', admin_site.urls),
+    url(r'^delma/login/$', auth_views.login, name='account_login'),
     url(r'^fichas/', include('fichas.urls')),
+    url(r'^seguridad/', include('seguridad.urls')),
+    url(r'^$', FichaIndexView.as_view(), name='index'),
+
 ]

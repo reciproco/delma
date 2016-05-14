@@ -26,3 +26,6 @@ class FichaDetail(DetailView):
 
 class FichaIndexView(TemplateView):
     template_name = 'fichas/index.html'
+
+class FichaSearchView(TemplateView):
+    template_name = 'fichas/search.html'
