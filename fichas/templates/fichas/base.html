@@ -1,0 +1,59 @@
+{% load i18n admin_static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+<head>
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "fichas/css/siimple.css" %}{% endblock %}" />
+<link rel="stylesheet" type="text/css" href="{% static "fichas/css/style.css" %}" />
+{% block extrastyle %}{% endblock %}
+{% block extrahead %}{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+{% load i18n %}
+<body>
+  <div class="navbar">
+    <a class="navbar-logo" href="{% url 'index' %}">Delma</a>
+    <a class="navbar-link" href="{% url 'index' %}">Inicio</a>
+    <a class="navbar-link" href="{% url 'seguridad:login' %}">Inciar sesión</a>
+    {% if user.is_authenticated and user.is_active and user.is_staff %}
+    <a class="navbar-link" href="{% url 'account_login' %}">Administrar</a>
+    {% endif %}
+  </div>
+  <div>
+        {% if user.is_authenticated %}
+        <div id="user-tools">
+                <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+                {% if site_url %}
+                    <a href="{{ site_url }}">{% trans 'View site' %}</a> /
+                {% endif %}
+                {% if user.is_active and user.is_staff %}
+                    {% url 'django-admindocs-docroot' as docsroot %}
+                    {% if docsroot %}
+                        <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
+                    {% endif %}
+                {% endif %}
+                {% if user.has_usable_password %}
+                <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
+                {% endif %}
+                <a href="{% url 'seguridad:logout' %}">{% trans 'Log out' %}</a>
+        </div>
+        {% endif %}
+    <!-- END Header -->
+    {% block messages %}
+        {% if messages %}
+        <ul class="messagelist">{% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+        {% endfor %}</ul>
+        {% endif %}
+    {% endblock messages %}
+</div>
+    <!-- Content -->
+        {% block content %}
+        {{ content }}
+        {% endblock %}
+    <!-- END Content -->
+
+    {% block footer %}<div class="foot"></div>{% endblock %}
+<!-- END Container -->
+</body>
+</html>

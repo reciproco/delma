@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from delma import settings
+from django.conf import settings
 import os, mimetypes
 
 # Create your views here.

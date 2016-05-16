@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from fichas.admin import admin_site
 from fichas.views import FichaIndexView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url(r'^delma/', admin_site.urls),
@@ -26,4 +28,5 @@ urlpatterns = [
     url(r'^seguridad/', include('seguridad.urls')),
     url(r'^$', FichaIndexView.as_view(), name='index'),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

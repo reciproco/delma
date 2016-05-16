@@ -1,16 +1,12 @@
-{% extends "base.html" %}
+{% extends "fichas/base.html" %}
 
 {% block content %}
-
-<p>Elija opción</p>    
-        <ul>
-            <li><a href="{% url 'seguridad:login' %}">Identificarse</a></li>
-        </ul>
-        <ul>
-            <li><a href="{% url 'fichas:search' %}">Buscar paciente</a></li>
-        </ul>
-        <ul>
-            <li><a href="{% url 'account_login' %}">Gestión de usuarios</a></li>
-        </ul>
-
+<div class="cover" align="center">
+<div class="cover-title">Delma</div>
+<div class="cover-description">Aplicación para gestión de fichas de pacientes.</div>
+<a class="btn-outline cover-btn" href="{% url 'fichas:search' %}">Buscar fichas</a>
+<a class="btn-outline cover-btn" href="{% url 'account_login' %}">Administrar</a>
+<br>
+<span class="text-small">Hecho con cariño por GHGHG</span>
+</div>
 {% endblock %}
