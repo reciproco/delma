@@ -42,5 +42,4 @@ admin_site.register(Paciente, PacienteAdmin)
 admin_site.register(Ficha, FichaAdmin)
 admin_site.register(User, UserAdmin)
 admin_site.register(Group, GroupAdmin)
-#admin.site.register(Adjunto)
 

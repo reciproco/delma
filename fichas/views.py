@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from delma import settings
+import os, mimetypes
 
 # Create your views here.
 import  logging
@@ -10,6 +12,17 @@ from django.db.models import Q
 from fichas.models import Ficha
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
+
+def download_file(request, name):
+    mimetype = mimetypes.guess_type(os.path.join(settings.MEDIA_ROOT,name))
+    with open(os.path.join(settings.MEDIA_ROOT,name), 'rb') as f:
+         
+        response = HttpResponse(f, content_type = mimetype)
+        response['Content-Disposition'] = "attachment; filename=%s" % \
+                                     (name)
+        return response
+
+        
 class FichaList(ListView):
     model = Ficha
 

@@ -123,3 +123,5 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'static'))
 STATIC_URL = '/static/'
 # Custom options
 LOGIN_REDIRECT_URL = '/'
+MEDIA_URL = '/fichas/media/'
+MEDIA_ROOT = '/webapps/media'
