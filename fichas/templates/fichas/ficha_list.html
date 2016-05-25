@@ -1,10 +1,18 @@
 {% extends "fichas/base.html" %}
 
 {% block content %}
-    <h2>Fichas</h2>
+    <h2>Listado</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>Ficha</td><td>Fecha</td>
+            </tr>
+          </thead>
         {% for ficha in object_list %}
-        <ul>
-            <li><a href="{% url 'fichas:ficha-detail' pk=ficha.id %}">{{ ficha.paciente }}</a></li>
-        </ul>
+        <tr>
+            <td><a href="{% url 'fichas:ficha-detail' pk=ficha.id %}">{{ ficha.paciente }}</a></td>
+            <td>{{ ficha.cuando }}</td>
+        </tr>
         {% endfor %}
+        </table>
 {% endblock %}
