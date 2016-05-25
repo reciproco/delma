@@ -32,6 +32,17 @@
     opacity: 1;
     text-decoration: none;
 }
+
+.navbar-user {
+    color: #ffffff;
+    float: right;
+    font-size: 20px;
+    font-weight: 400;
+    margin-right: 20px;
+    opacity: 1;
+    text-decoration: none;
+}
+
 .cover {
     background-color: #09a0f6;
     color: #ffffff;

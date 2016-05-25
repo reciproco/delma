@@ -8,36 +8,28 @@
 {% block extrastyle %}{% endblock %}
 {% block extrahead %}{% endblock %}
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 {% load i18n %}
 <body>
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
   <div class="navbar">
     <a class="navbar-logo" href="{% url 'index' %}">Delma</a>
-    <a class="navbar-link" href="{% url 'index' %}">Inicio</a>
+    {% if user.is_authenticated %}
+    <div class="navbar-user">Bienvenido {% firstof user.get_short_name user.get_username %}</div>
+        {% if user.is_active and user.is_staff %}
+        <a class="navbar-link" href="{% url 'account_login' %}">Administrar</a>
+        {% endif %}
+        {% if user.has_usable_password %}
+        <a class="navbar-link" href="{% url 'admin:password_change' %}">Cambiar contraseña</a> 
+        {% endif %}
+    <a class="navbar-link" href="{% url 'seguridad:logout' %}">Cerrar sesión</a>
+    {% else %}
     <a class="navbar-link" href="{% url 'seguridad:login' %}">Inciar sesión</a>
-    {% if user.is_authenticated and user.is_active and user.is_staff %}
-    <a class="navbar-link" href="{% url 'account_login' %}">Administrar</a>
     {% endif %}
   </div>
-  <div>
-        {% if user.is_authenticated %}
-        <div id="user-tools">
-                <strong>{% firstof user.get_short_name user.get_username %}</strong>.
-                {% if site_url %}
-                    <a href="{{ site_url }}">{% trans 'View site' %}</a> /
-                {% endif %}
-                {% if user.is_active and user.is_staff %}
-                    {% url 'django-admindocs-docroot' as docsroot %}
-                    {% if docsroot %}
-                        <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
-                    {% endif %}
-                {% endif %}
-                {% if user.has_usable_password %}
-                <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
-                {% endif %}
-                <a href="{% url 'seguridad:logout' %}">{% trans 'Log out' %}</a>
-        </div>
-        {% endif %}
     <!-- END Header -->
     {% block messages %}
         {% if messages %}
@@ -53,7 +45,14 @@
         {% endblock %}
     <!-- END Content -->
 
-    {% block footer %}<div class="foot"></div>{% endblock %}
+    {% block footer %}
+    <div class="foot">
+       <a class="foot-logo" href="{% url 'index' %}">Delma</a>
+           Aplicación hecha con <span class="heart"></span> por
+       <a href="https://github.com/reciproco/delma">Javier Segura</a>
+       usando <a href="https://www.djangoproject.com/">Django</a>
+    </div>
+    {% endblock %}
 <!-- END Container -->
 </body>
 </html>
