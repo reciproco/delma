@@ -2,7 +2,7 @@
 {% block breadcrumbs %}
     <div class="breadcrumbs">
     <a href="{% url 'index' %}">Inicio</a> &rsaquo; <a href="{% url 'fichas:search' %}">Buscar</a> &rsaquo; <a href="{% url 'fichas:ficha-list' %}">Lista de fichas</a>
-    &rsaquo; <a href="{% url 'fichas:ficha-detail' 1 %}">Detalle</a>
+    &rsaquo; <a href="{% url 'fichas:ficha-detail' object.id %}">{{object.paciente}} ({{ object.cuando }})</a>
     </div>
 {% endblock %}
 {% block content %}
