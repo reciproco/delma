@@ -31,6 +31,9 @@
     {% endif %}
   </div>
     <!-- END Header -->
+    {% block breadcrumbs %}
+    {{ breadcrumbs }}
+    {% endblock %}
     {% block messages %}
         {% if messages %}
         <ul class="messagelist">{% for message in messages %}
