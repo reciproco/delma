@@ -11,6 +11,7 @@ from django.views.generic import ListView, DetailView, TemplateView
 from django.db.models import Q
 from fichas.models import Ficha
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def download_file(request, name):
@@ -23,8 +24,9 @@ def download_file(request, name):
         return response
 
         
-class FichaList(ListView):
+class FichaList(LoginRequiredMixin,ListView):
     model = Ficha
+    login_url = '/seguridad/login/'
 
     def get_queryset(self):
         qs = super(FichaList, self).get_queryset()
@@ -35,11 +37,14 @@ class FichaList(ListView):
             return qs.filter(Q(paciente__apellido1__icontains=nombre) | Q(paciente__nombre__icontains=nombre))
         return qs
 
-class FichaDetail(DetailView):
+class FichaDetail(LoginRequiredMixin,DetailView):
+    login_url = '/seguridad/login/'
     model = Ficha
 
-class FichaIndexView(TemplateView):
+class FichaIndexView(LoginRequiredMixin,TemplateView):
+    login_url = '/seguridad/login/'
     template_name = 'fichas/index.html'
 
-class FichaSearchView(TemplateView):
+class FichaSearchView(LoginRequiredMixin,TemplateView):
+    login_url = '/seguridad/login/'
     template_name = 'fichas/search.html'
