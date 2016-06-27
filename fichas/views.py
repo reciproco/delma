@@ -12,8 +12,9 @@ from django.db.models import Q
 from fichas.models import Ficha
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
-
+@login_required(login_url='/seguridad/login/')
 def download_file(request, name):
     mimetype = mimetypes.guess_type(os.path.join(settings.MEDIA_ROOT,name))
     with open(os.path.join(settings.MEDIA_ROOT,name), 'rb') as f:
