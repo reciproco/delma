@@ -2,20 +2,23 @@ from django.test import TestCase
 from django.test import Client
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from fichas import models
+from fichas.models import Ficha
 from django.utils import timezone
+from model_mommy import mommy
 
 class ViewsTest(TestCase):
     def setUp(self):
-        # Every test needs a client.
         self.client = Client()
         self.user = User.objects.create_user('test', 'test@test.com', 'prueba')
         self.client.login(username='test', password='prueba')
-        self.paciente = models.Paciente.objects.create(nombre='prueba',apellido1='p',apellido2='p',direccion='calle',telefono='917732443',correo='a@test.com',dni='50867534W',nacimiento=timezone.now(), alta=timezone.now())
-        self.ficha = models.Ficha.objects.create(paciente=self.paciente,lesion='pupa',cuando=timezone.now(), como='caida', observaciones='aa', dolor='mucho', sesiones= 3)
+        self.ficha = mommy.make(Ficha)
 
     def test_search(self):
         response = self.client.get(reverse('fichas:search'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_media(self):
+        response = self.client.get(reverse('fichas:media', kwargs={'name':'peloto.jpg'}))
         self.assertEqual(response.status_code, 200)
 
     def test_list(self):
