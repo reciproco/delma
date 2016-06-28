@@ -58,13 +58,19 @@ class Ficha(models.Model):
     observaciones = models.TextField()
     terapeuta = models.CharField(max_length=3,choices=TERAPEUTA_CHOICES, default='ALB')
     dolor = models.CharField(max_length=128)
-    sesiones = models.IntegerField()
+    sesiones = models.TextField(max_length=1024)
 
     def __str__(self):
         return self.paciente.nombre_completo
 
 class Adjunto(models.Model):
-    consulta = models.ForeignKey(Ficha, on_delete=models.CASCADE)
+    ficha = models.ForeignKey(Ficha, on_delete=models.CASCADE)
     nombre  =  models.CharField(max_length=128)
     fichero = models.FileField(upload_to=path_and_rename)
 
+class Abono(models.Model):
+    cliente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    periodo_inicio  = models.DateField()
+    periodo_fin  = models.DateField()
+    importe = models.DecimalField(max_digits=7, decimal_places=2,null=True, blank=True,default=0)
+    pagado = models.BooleanField(default=False)

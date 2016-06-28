@@ -5,7 +5,7 @@ from django.contrib.auth.admin import GroupAdmin, UserAdmin
 # Register your models here.
 from django.contrib.admin import AdminSite
 
-from .models import Paciente, Ficha, Adjunto
+from .models import Paciente, Ficha, Adjunto, Abono
 
 class AdjuntoInline(admin.StackedInline):
     extra = 0
@@ -32,6 +32,11 @@ class PacienteAdmin(admin.ModelAdmin):
     search_fields = ('nombre_completo','telefono','correo')
     ordering = ('-alta',)
 
+class AbonoAdmin(admin.ModelAdmin):
+    list_display = ('cliente','periodo_inicio', 'periodo_fin', 'importe','pagado')
+    search_fields = ('cliente__nombre','periodo_inicio','pagado')
+    ordering = ('-periodo_inicio',)
+
 class MyAdminSite(AdminSite):
     site_header = 'DELMA Administrador'
 
@@ -42,4 +47,5 @@ admin_site.register(Paciente, PacienteAdmin)
 admin_site.register(Ficha, FichaAdmin)
 admin_site.register(User, UserAdmin)
 admin_site.register(Group, GroupAdmin)
+admin_site.register(Abono, AbonoAdmin)
 
