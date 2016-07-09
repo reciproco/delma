@@ -6,7 +6,6 @@ docutils==0.12
 gunicorn==19.5.0
 jmespath==0.9.0
 model-mommy==1.2.6
-pkg-resources==0.0.0
 pycrypto==2.6.1
 python-dateutil==2.5.3
 six==1.10.0

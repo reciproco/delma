@@ -187,6 +187,11 @@
 .card-paciente {
 }
 
+#main-content {
+  margin: 10px;
+  border-radius: 10px;
+  background: #fff;
+}
 /* BREADCRUMBS */
 
 div.breadcrumbs {
@@ -205,4 +210,3 @@ div.breadcrumbs a {
 div.breadcrumbs a:focus, div.breadcrumbs a:hover {
     color: #c4dce8;
 }
-
