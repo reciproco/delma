@@ -12,7 +12,7 @@
       <p class=" alert alert-error">Your account doesn't have access to this page. To proceed,
       please login with an account that has access.</p>
       {% else %}
-      <p class="alert alert-error">Please login to see this page.</p>
+      <p class="alert alert-error">Por favor inicie sesión para acceder a esta página</p>
       {% endif %}
   {% endif %}
 
@@ -24,7 +24,7 @@
       <td>{{ form.username|addcss:'form-input' }}</td>
   </tr>
   <tr>
-      <td>{{ form.password.label_tag }}</td>
+      <td><h5>{{ form.password.label_tag }}</h5></td>
       <td>{{ form.password|addcss:'form-input' }}</td>
   </tr>
   </table>

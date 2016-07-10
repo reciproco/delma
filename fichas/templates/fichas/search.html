@@ -6,15 +6,12 @@
     </div>
 {% endblock %}
 {% block content %}
+<div id="main-content">
 
-<p>Busqueda de pacientes:</p>    
-<form id="searchform" action="{% url 'fichas:ficha-list' %}" method="get" accept-charset="utf-8">
-      <button type="submit">
-        <i></i>
-      </button>
-      <input id="searchbox" name="nombre" type="text" placeholder="Search">
-    </form>
-</body>
-</html>
+  <form id="searchform" action="{% url 'fichas:ficha-list' %}" method="get" accept-charset="utf-8">
+        <input class="form-input" id="searchbox" name="nombre" type="text" placeholder="Busqueda de pacientes">
+        <input class="form-input" type="submit" value="Buscar">
+  </form>
+</div>
 
 {% endblock %}
