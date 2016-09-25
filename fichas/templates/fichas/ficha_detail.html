@@ -10,27 +10,27 @@
     <div id="card">
       <div class="grid grid-fluid">
         <div class="row">
-          <div class="col-6" class="card-paciente"><strong>Paciente: </strong>{{ object.paciente }}</div>
+          <div class="col-6" class="card-paciente"><strong>PACIENTE: </strong>{{ object.paciente }}</div>
           <div class="col-3"></div>
-          <div class="col-3"><strong>Edad: </strong>{{ object.paciente.edad }}</div>
+          <div class="col-3"><strong>EDAD: </strong>{{ object.paciente.edad }}</div>
         </div>
         <div class="row">
-          <div class="col-12" class="card-paciente"><strong>Lesión: </strong>{{ object.lesion }}</div>
+          <div class="col-12" class="card-paciente"><strong>LESIÓN: </strong>{{ object.lesion }}</div>
         </div>
         <div class="row">
-          <div class="col-4" class="card-paciente"><strong>Cuando: </strong>{{ object.cuando }}</div>
-          <div class="col-8"><strong>Como: </strong>{{ object.como }}</div>
+          <div class="col-4" class="card-paciente"><strong>CUÁNDO: </strong>{{ object.cuando }}</div>
+          <div class="col-8"><strong>CÓMO: </strong>{{ object.como }}</div>
         </div>
         <div class="row">
-          <div class="col-2" class="card-paciente"><strong>Mov: </strong>{{ object.mov }}</div>
-          <div class="col-2" class="card-paciente"><strong>Pro/Sup: </strong>{{ object.prosup }}</div>
-          <div class="col-2" class="card-paciente"><strong>Flex: </strong>{{ object.flex }}</div>
-          <div class="col-2" class="card-paciente"><strong>Ext: </strong>{{ object.ext }}</div>
-          <div class="col-2" class="card-paciente"><strong>Rot: </strong>{{ object.rot }}</div>
-          <div class="col-2" class="card-paciente"><strong>Tm: </strong>{{ object.tm }}</div>
+          <div class="col-2" class="card-paciente"><strong>MOV: </strong>{{ object.mov }}</div>
+          <div class="col-2" class="card-paciente"><strong>PRO/SUP: </strong>{{ object.prosup }}</div>
+          <div class="col-2" class="card-paciente"><strong>FLEX: </strong>{{ object.flex }}</div>
+          <div class="col-2" class="card-paciente"><strong>EXT: </strong>{{ object.ext }}</div>
+          <div class="col-2" class="card-paciente"><strong>ROT: </strong>{{ object.rot }}</div>
+          <div class="col-2" class="card-paciente"><strong>TM: </strong>{{ object.tm }}</div>
         </div>
         <div class="col-12">
-         <label>Tratamiento:</label>
+         <strong>TRATAMIENTO:</strong>
          {% if object.tratamiento_ee %}
          <label style="color:green;">EE</label>
          {% else %}
@@ -89,24 +89,24 @@
         </div>
        </div>
        <div class="row">
-         <div class="col-4" class="card-paciente"><strong>Terapeuta: </strong>{{ object.terapeuta }}</div>
-         <div class="col-4" class="card-paciente"><strong>Rte: </strong>{{ object.rte }}</div>
-         <div class="col-4" class="card-paciente"><strong>Emg: </strong>{{ object.emg }}</div>
+         <div class="col-4" class="card-paciente"><strong>TERAPEUTA: </strong>{{ object.terapeuta }}</div>
+         <div class="col-4" class="card-paciente"><strong>RTE: </strong>{{ object.rte }}</div>
+         <div class="col-4" class="card-paciente"><strong>EMG: </strong>{{ object.emg }}</div>
        </div>
        <div class="row">
-         <div class="col-2" class="card-paciente"><strong>Pc: </strong>{{ object.pc }}</div>
-         <div class="col-3" class="card-paciente"><strong>Dr: </strong>{{ object.dr }}</div>
-         <div class="col-7" class="card-paciente"><strong>Dolor: </strong>{{ object.dolor }}</div>
+         <div class="col-2" class="card-paciente"><strong>PC: </strong>{{ object.pc }}</div>
+         <div class="col-3" class="card-paciente"><strong>DR: </strong>{{ object.dr }}</div>
+         <div class="col-7" class="card-paciente"><strong>DOLOR: </strong>{{ object.dolor }}</div>
        </div>
         <div class="row">
-          <div class="col-12" class="card-paciente"><strong>Observaciones: </strong>{{ object.observaciones }}</div>
+          <div class="col-12" class="card-paciente"><strong>OBSERVACIONES: </strong>{{ object.observaciones }}</div>
         </div>
         <div class="row">
-          <div class="col-12" class="card-paciente"><strong>Sesiones: </strong>{{ object.sesiones }}</div>
+          <div class="col-12" class="card-paciente"><strong>SESIONES: </strong>{{ object.sesiones }}</div>
         </div>
         <div class="row">
           <div class="col-12">
-            <strong>Ficheros:</strong>
+            <strong>FICHEROS:</strong>
             {% for i in object.adjunto_set.all %}
                 <a href="{{ i.fichero.url }}">"{{i.nombre}}"</a>
             {% endfor %}
