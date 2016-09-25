@@ -1,7 +1,8 @@
 from django.db import models
-import os
 from uuid import uuid4
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
+
 
 def path_and_rename(instance, filename):
     instance.nombre = filename
@@ -11,6 +12,7 @@ def path_and_rename(instance, filename):
     else:
         filename = '{}.{}'.format(uuid4().hex, ext)
     return filename
+
 
 # Create your models here.
 class Paciente(models.Model):
@@ -25,12 +27,19 @@ class Paciente(models.Model):
     alta = models.DateTimeField()
 
     def _get_nombre_completo(self):
-        "Devuelve el nombre completo de la persona."
+        """Devuelve el nombre completo de la persona."""
         return '%s %s %s' % (self.nombre, self.apellido1, self.apellido2)
     nombre_completo = property(_get_nombre_completo)
 
+    def edad(self):
+        años = timezone.now().year - self.nacimiento.year
+
+        return años
+
+
     def __str__(self):
         return self.nombre_completo
+
 
 class Ficha(models.Model):
 
@@ -40,10 +49,21 @@ class Ficha(models.Model):
         ('CAR', _('CAROLINA')),
     )
 
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, related_name='consultas')
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE,
+                                 related_name='consultas')
     lesion = models.CharField(max_length=1024)
-    cuando  = models.DateTimeField()
+    cuando = models.DateTimeField()
     como = models.CharField(max_length=1024)
+    mov = models.CharField(max_length=12)
+    prosup = models.CharField(max_length=12)
+    flex = models.CharField(max_length=12)
+    ext = models.CharField(max_length=12)
+    rot = models.CharField(max_length=12)
+    tm = models.CharField(max_length=12)
+    rte = models.CharField(max_length=24)
+    emg = models.CharField(max_length=128)
+    pc = models.CharField(max_length=24)
+    dr = models.CharField(max_length=24)
     tratamiento_ee = models.BooleanField(default=False)
     tratamiento_ir = models.BooleanField(default=False)
     tratamiento_tm = models.BooleanField(default=False)
@@ -56,21 +76,25 @@ class Ficha(models.Model):
     tratamiento_ps = models.BooleanField(default=False)
     tratamiento_epte = models.BooleanField(default=False)
     observaciones = models.TextField()
-    terapeuta = models.CharField(max_length=3,choices=TERAPEUTA_CHOICES, default='ALB')
+    terapeuta = models.CharField(max_length=3, choices=TERAPEUTA_CHOICES,
+                                 default='ALB')
     dolor = models.CharField(max_length=128)
     sesiones = models.TextField(max_length=1024)
 
     def __str__(self):
         return self.paciente.nombre_completo
 
+
 class Adjunto(models.Model):
     ficha = models.ForeignKey(Ficha, on_delete=models.CASCADE)
-    nombre  =  models.CharField(max_length=128)
+    nombre = models.CharField(max_length=128)
     fichero = models.FileField(upload_to=path_and_rename)
+
 
 class Abono(models.Model):
     cliente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
-    periodo_inicio  = models.DateField()
-    periodo_fin  = models.DateField()
-    importe = models.DecimalField(max_digits=7, decimal_places=2,null=True, blank=True,default=0)
+    periodo_inicio = models.DateField()
+    periodo_fin = models.DateField()
+    importe = models.DecimalField(max_digits=7, decimal_places=2,
+                                  null=True, blank=True, default=0)
     pagado = models.BooleanField(default=False)

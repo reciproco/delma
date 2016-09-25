@@ -10,21 +10,107 @@
     <div id="card">
       <div class="grid grid-fluid">
         <div class="row">
-          <div class="col-8" class="card-paciente">{{ object.paciente }}</div>
-          <div class="col-4">{{ object.lesion }}</div>
+          <div class="col-6" class="card-paciente"><strong>Paciente: </strong>{{ object.paciente }}</div>
+          <div class="col-3"></div>
+          <div class="col-3"><strong>Edad: </strong>{{ object.paciente.edad }}</div>
         </div>
         <div class="row">
-          <ul>
-            <li>Cuando: {{ object.cuando }}</li>
-            <li>Como: {{ object.como }}</li>
-            <li>Tratamiento: {{ object.tratamiento_ee|yesno:"EE," }} {{ object.tratamiento_IR|yesno:"IR," }} {{ object.tratamiento_tm|yesno:"TM," }} {{ object.tratamiento_us|yesno:"US," }} {{ object.tratamiento_l|yesno:"L," }} {{ object.tratamiento_MG|yesno:"MG," }} {{ object.tratamiento_cines|yesno:"CINES," }} {{ object.tratamiento_synm|yesno:"SYNM," }} {{ object.tratamiento_tc|yesno:"TC," }} {{ object.tratamiento_PS|yesno:"PS," }} {{ object.tratamiento_epte|yesno:"EPTE,  " }} </li>
-            <li>Observaciones: {{ object.observaciones }}</li>
-            <li>Terapeuta: {{ object.get_terapeuta_display }}</li>
-            <li>Dolor: {{ object.dolor }}</li>
-          {% for i in object.adjunto_set.all %}
-          <li>Adjunto: <a href="{{ i.fichero.url }}">{{i.nombre}}</a></li>
-          {% endfor %}
-          </ul>
+          <div class="col-12" class="card-paciente"><strong>Lesión: </strong>{{ object.lesion }}</div>
+        </div>
+        <div class="row">
+          <div class="col-4" class="card-paciente"><strong>Cuando: </strong>{{ object.cuando }}</div>
+          <div class="col-8"><strong>Como: </strong>{{ object.como }}</div>
+        </div>
+        <div class="row">
+          <div class="col-2" class="card-paciente"><strong>Mov: </strong>{{ object.mov }}</div>
+          <div class="col-2" class="card-paciente"><strong>Pro/Sup: </strong>{{ object.prosup }}</div>
+          <div class="col-2" class="card-paciente"><strong>Flex: </strong>{{ object.flex }}</div>
+          <div class="col-2" class="card-paciente"><strong>Ext: </strong>{{ object.ext }}</div>
+          <div class="col-2" class="card-paciente"><strong>Rot: </strong>{{ object.rot }}</div>
+          <div class="col-2" class="card-paciente"><strong>Tm: </strong>{{ object.tm }}</div>
+        </div>
+        <div class="col-12">
+         <label>Tratamiento:</label>
+         {% if object.tratamiento_ee %}
+         <label style="color:green;">EE</label>
+         {% else %}
+         <label style="color:#C0C0C0;">EE</label>
+         {% endif %}
+         {% if object.tratamiento_ir %}
+         <label style="color:green;">IR</label>
+         {% else %}
+         <label style="color:#C0C0C0;">IR</label>
+         {% endif %}
+         {% if object.tratamiento_tm %}
+         <label style="color:green;">TM</label>
+         {% else %}
+         <label style="color:#C0C0C0;">TM</label>
+         {% endif %}
+         {% if object.tratamiento_us %}
+         <label style="color:green;">US</label>
+         {% else %}
+         <label style="color:#C0C0C0;">US</label>
+         {% endif %}
+         {% if object.tratamiento_l %}
+         <label style="color:green;">L</label>
+         {% else %}
+         <label style="color:#C0C0C0;">L</label>
+         {% endif %}
+         {% if object.tratamiento_mg %}
+         <label style="color:green;">MG</label>
+         {% else %}
+         <label style="color:#C0C0C0;">MG</label>
+         {% endif %}
+         {% if object.tratamiento_cines %}
+         <label style="color:green;">CINES</label>
+         {% else %}
+         <label style="color:#C0C0C0;">CINES</label>
+         {% endif %}
+         {% if object.tratamiento_synm %}
+         <label style="color:green;">SYNM</label>
+         {% else %}
+         <label style="color:#C0C0C0;">SYNM</label>
+         {% endif %}
+         {% if object.tratamiento_tc %}
+         <label style="color:green;">TC</label>
+         {% else %}
+         <label style="color:#C0C0C0;">TC</label>
+         {% endif %}
+         {% if object.tratamiento_ps %}
+         <label style="color:green;">PS</label>
+         {% else %}
+         <label style="color:#C0C0C0;">PS</label>
+         {% endif %}
+         {% if object.tratamiento_epte %}
+         <label style="color:green;">EPTE</label>
+         {% else %}
+         <label style="color:#C0C0C0;">EPTE</label>
+         {% endif %}
+        </div>
+       </div>
+       <div class="row">
+         <div class="col-4" class="card-paciente"><strong>Terapeuta: </strong>{{ object.terapeuta }}</div>
+         <div class="col-4" class="card-paciente"><strong>Rte: </strong>{{ object.rte }}</div>
+         <div class="col-4" class="card-paciente"><strong>Emg: </strong>{{ object.emg }}</div>
+       </div>
+       <div class="row">
+         <div class="col-2" class="card-paciente"><strong>Pc: </strong>{{ object.pc }}</div>
+         <div class="col-3" class="card-paciente"><strong>Dr: </strong>{{ object.dr }}</div>
+         <div class="col-7" class="card-paciente"><strong>Dolor: </strong>{{ object.dolor }}</div>
+       </div>
+        <div class="row">
+          <div class="col-12" class="card-paciente"><strong>Observaciones: </strong>{{ object.observaciones }}</div>
+        </div>
+        <div class="row">
+          <div class="col-12" class="card-paciente"><strong>Sesiones: </strong>{{ object.sesiones }}</div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <strong>Ficheros:</strong>
+            {% for i in object.adjunto_set.all %}
+                <a href="{{ i.fichero.url }}">"{{i.nombre}}"</a>
+            {% endfor %}
+          </div>
         </div>
       </div>
     </div>
